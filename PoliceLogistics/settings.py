@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Moduł do ustawień admina
-    # 'main.apps.MainConfig',
+    'main.apps.MainConfig',
     # Defaultowe ustawienia
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,7 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    # Dodatkowe biblioteki
     'bootstrapform',
+    'django_extensions',
+    'import_export',
+    # Moduły projektu
+    'unit.apps.UnitConfig',
+    'plan.apps.PlanConfig',
+    'project.apps.ProjectConfig',
+    'contract.apps.ContractConfig',
+    'gallery.apps.GalleryConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -134,6 +144,13 @@ DATE_FORMAT = "d.m.Y"
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'main/static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'main:home'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -141,12 +158,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SHELL_PLUS_PRINT_SQL = True
-
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR / 'main/static']
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
-# LOGIN_URL = 'main:welcome'
-# LOGIN_REDIRECT_URL = 'main:welcome'
-# LOGOUT_REDIRECT_URL = 'main:welcome'

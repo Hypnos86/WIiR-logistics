@@ -1,0 +1,62 @@
+{%load static%}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="{%static 'main/bootstrap/css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap.rtl.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap.rtl.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-grid.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-grid.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-grid.rtl.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-grid.rtl.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-reboot.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-reboot.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-reboot.rtl.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-reboot.rtl.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-utilities.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-utilities.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-utilities.rtl.css'%}" rel="stylesheet">
+    <link href="{%static 'main/bootstrap/css/bootstrap-utilities.rtl.min.css'%}" rel="stylesheet">
+    <link href="{%static 'main/css/style.css'%}" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="{%static 'main/bootstrap//js/bootstrap.bundle.js'%}"></script>
+    <!-- icon -->
+    <link rel="shortcut icon" href="{%static 'main/media/logo.ico'%}" type="x-icon">
+    <link rel="stylesheet" href="{%static 'main/bootstrap-icons/bootstrap-icons.css'%}">
+    <script src="/static/main/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>Logowanie Logistyka 2024</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 login">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-center my-4"> Wydział Inwestycji i Remontów KWP w Poznaniu</h6>
+                    <h2 class="bi bi-fingerprint text-center"></h2>
+                    <form method="post" autocomplete="off">
+                        {%csrf_token%}
+                        <div class="form-group">
+                            <span>{{form.username.label}}</span><span>(ID)</span>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group mt-2">
+                            <span>{{form.password.label}}</span>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary mt-4 col-12 my-btn">
+                            <span class="bi bi-box-arrow-in-left icon-size h6">Zaloguj</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
