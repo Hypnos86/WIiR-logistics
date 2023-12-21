@@ -1,9 +1,60 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 10px;
-
 }
 
 body {
     background-color: #F5F5F5;
+    font-size:90%;
 }
+.dashboard-box{
+    min-height:150px;
+    max-height:300px;
+}
+/* Kolory */
+/* #08355E */
+/* #D6DE83 */
+/* #5E0D08 */
+/* #B38C4C */
+/* #045E5A */
+/* #085E5A */
+
+* Stylizacja pionowego paska przewijania */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(11,117,112,46);
+    /*border-radius: 5px;*/
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Stylizacja poziomego paska przewijania (opcjonalna) */
+::-webkit-scrollbar-horizontal {
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background: #888;
+}
+
+/* Usunięcie paska przewijania na elementach textarea (opcjonalne) */
+textarea::-webkit-scrollbar,
+textarea::-webkit-scrollbar-thumb {
+    width: 0;
+    background: transparent;
+}
+/*-------------------------------------------------*/
