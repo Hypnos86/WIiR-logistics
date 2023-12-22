@@ -11,6 +11,9 @@ html {
 body {
     font-size:90%;
     height: 100vh;
+    background-color: #F7F7F7;
+    /*#F7F7F7*/
+    /*#E8E8E8*/
 }
 .navbar{
     position:sticky;
@@ -24,6 +27,9 @@ body {
     border-radius: 5px;
 }
 
+.logout{
+
+}
 .main-settings{
     margin: 0;
     padding: 0;
@@ -39,6 +45,17 @@ body {
 .dashboard-box{
     min-height:250px;
     max-height:300px;
+    padding: 0;
+    position: relative;
+    height: 50rem;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 2rem;
 }
 /* Kolory */
 /* #08355E */
@@ -82,15 +99,30 @@ textarea::-webkit-scrollbar-thumb {
     background: transparent;
 }
 /*-------------------------------------------------*/
-
-.unit{
-    position: relative;
-    height: 50rem;
-    z-index: 0;
-    background-image: url("media/project.jpg");
-    background-size: cover;
-    background-position: center;
+.box-unit{
+    background-image: url("media/map1.jpg");
 }
+
+.box-contract{
+    background-image: url("media/contract.jpg");
+
+}
+
+.box-project{
+    background-image: url("media/project.jpg");
+}
+
+.box-plan{
+background-image: url("media/plan2.jpg");
+
+}
+.box-donation{
+background-image: url("media/donation.jpg");
+}
+.box-gallery{
+background-image: url("media/gallery1.jpg");
+}
+
 .hero-shadow{
     position: absolute;
     top:0;
@@ -99,4 +131,10 @@ textarea::-webkit-scrollbar-thumb {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
+    border-radius: 10px;
 }
+/*
+.hero-shadow:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+*/

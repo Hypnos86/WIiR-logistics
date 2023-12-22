@@ -44,7 +44,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto d-flex align-items-center">
                 <li class="nav-item">
                     <a class="nav-link" href="">Jednostki</a>
                 </li>
@@ -66,7 +66,7 @@
                 <li class="nav-item">
                     <form class="nav-link" action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}
-                        <input type="submit" value="Wyloguj">
+                        <input class="logout" type="submit" value="Wyloguj">
                     </form>
                 </li>
             </ul>
