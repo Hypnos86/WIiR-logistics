@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container p-0 bg-secondary">
-    <div class="row justify-content-around min-vh-100  bg-warning">
-        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box bg-success m-3 ">1</div>
-        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box bg-warning m-3">2</div>
-        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box bg-dark m-3">3</div>
-        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box bg-secondary m-3">4</div>
-        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box bg-info m-3">5</div>
-        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box bg-info m-3">6</div>
+<div class="container p-0">
+    <div class="row justify-content-around align-items-center dashboard-layout">
+        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3 unit">
+            <div class="hv-100 d-flex flex-column justify-content-center align-items-center text-light text-center">
+                <a href="#" class="btn btn-outline-light">Jednostki</a>
+                <div class="hero-shadow"></div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3">Umowy</div>
+        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3">Inwestycje</div>
+        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3">Plany</div>
+        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3">Darowizny</div>
+        <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3">Galeria</div>
     </div>
 </div>
 {% endblock %}

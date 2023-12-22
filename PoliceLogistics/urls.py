@@ -21,15 +21,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+                  # path('admin/doc/', include('django.contrib.admindocs.urls')),
                   path('admin/', admin.site.urls),
-                  path('main/', include('main.urls')),
+                  path("accounts/", include("django.contrib.auth.urls")),
                   path('unit/', include('unit.urls')),
                   path('plan/', include('plan.urls')),
                   path('project/', include('project.urls')),
                   path('contract/', include('contract.urls')),
+                  path('donation/', include('donation.urls')),
                   path('gallery/', include('gallery.urls')),
-                  path('login/', auth_views.LoginView.as_view(), name='login'),
-                  path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+                  path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+                  path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
                   path('', include('main.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

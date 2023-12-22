@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'plan.apps.PlanConfig',
     'project.apps.ProjectConfig',
     'contract.apps.ContractConfig',
+    'donation.apps.DonationConfig',
     'gallery.apps.GalleryConfig',
-
 ]
 
 MIDDLEWARE = [
@@ -143,11 +143,14 @@ DATE_FORMAT = "d.m.Y"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'main/static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'main:home'
 LOGOUT_REDIRECT_URL = 'login'
@@ -155,6 +158,5 @@ LOGOUT_REDIRECT_URL = 'login'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SHELL_PLUS_PRINT_SQL = True

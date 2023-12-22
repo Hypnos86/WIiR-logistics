@@ -9,16 +9,35 @@ html {
 }
 
 body {
-    background-color: #F5F5F5;
     font-size:90%;
+    height: 100vh;
 }
 .navbar{
     position:sticky;
     top: 0px;
+    z-index:5;
+}
+
+.navbar-brand{
+    border: 2px solid white;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.main-settings{
+    margin: 0;
+    padding: 0;
+    min-height:90vh;
+}
+
+.dashboard-layout{
+    margin: 0;
+    padding: 0;
+    min-height:90vh;
 }
 
 .dashboard-box{
-    min-height:150px;
+    min-height:250px;
     max-height:300px;
 }
 /* Kolory */
@@ -29,30 +48,30 @@ body {
 /* #045E5A */
 /* #085E5A */
 
-* Stylizacja pionowego paska przewijania */
-::-webkit-scrollbar {
+/* Stylizacja pionowego paska przewijania */
+body::-webkit-scrollbar {
     width: 6px;
 }
 
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background: rgb(11,117,112,46);
     /*border-radius: 5px;*/
 }
 
-::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
 /* Stylizacja poziomego paska przewijania (opcjonalna) */
-::-webkit-scrollbar-horizontal {
+body::-webkit-scrollbar-horizontal {
     height: 10px;
 }
 
-::-webkit-scrollbar-thumb:horizontal {
+body::-webkit-scrollbar-thumb:horizontal {
     background: #888;
 }
 
@@ -63,3 +82,21 @@ textarea::-webkit-scrollbar-thumb {
     background: transparent;
 }
 /*-------------------------------------------------*/
+
+.unit{
+    position: relative;
+    height: 50rem;
+    z-index: 0;
+    background-image: url("media/project.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.hero-shadow{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
