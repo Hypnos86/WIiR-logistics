@@ -62,7 +62,7 @@ class County(models.Model):
         return cls.objects.all()
 
     def __str__(self):
-        return f"{self.name} - {self.swop_id}"
+        return f"{self.name}"
 
 
 class TypeUnit(models.Model):
@@ -73,6 +73,7 @@ class TypeUnit(models.Model):
 
     type_short = models.CharField(max_length=10, null=False, verbose_name="Skrócona nazwa")
     type_full = models.CharField(max_length=30, null=False, verbose_name="Pełna nazwa")
+    id_order = models.IntegerField(verbose_name="Kolejność", unique=True, null=True)
 
     @classmethod
     def create_type_unit(cls):

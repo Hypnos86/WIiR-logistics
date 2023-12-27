@@ -17,10 +17,16 @@ class UnitListView(LoginRequiredMixin, ListView):
 
     def get(self, request):
         try:
-            county = County.objects.all()
+            counties = County.objects.all()
+            if not counties.exists():
+                County.create_county()
+            
+            typesUnit = TypeUnit.objects.all()
+            if not typesUnit.exists():
+                TypeUnit.create_type_unit()
             
 
-            context = {'title':MainModule.unit.value}
+            context = {'title':MainModule.unit.value, 'counties':counties}
             return render(request, self.template_name, context)
         except Exception as e:
             context = {'error_message':e, 'method':self.method}
