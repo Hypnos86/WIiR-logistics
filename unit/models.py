@@ -88,11 +88,10 @@ class TypeUnit(models.Model):
             {"type_short": "RD", "type_full": "Rewir Dzielnicowych", "id_order": 8},
             {"type_short": "PPD", "type_full": "Punkt Przyjęć Dzielnicowych", "id_order": 9},
             {"type_short": "PPI", "type_full": "Punkt Przyjęć Interesantów", "id_order": 10},
-            {"type_short": "Ant.", "type_full": "Antena", "id_order": 11},
-            {"type_short": "Inne", "type_full": "Inne", "id_order": 12},
-            {"type_short": "CBZC", "type_full": "Centralne Biuro Zwalczania Cyberprzestępczości", "id_order": 13},
-            {"type_short": "LK", "type_full": "Laboratorium Kryminalistyczne", "id_order": 14},
-            {"type_short": "LOT", "type_full": "Lotnictwo", "id_order": 15},
+            {"type_short": "CBZC", "type_full": "Centralne Biuro Zwalczania Cyberprzestępczości", "id_order": 11},
+            {"type_short": "LK", "type_full": "Laboratorium Kryminalistyczne", "id_order": 12},
+            {"type_short": "LOT", "type_full": "Lotnictwo", "id_order": 13},
+            {"type_short": "Inne", "type_full": "Inne", "id_order": 14}
         ]
 
         # Tworzenie i zapisywanie obiektów w pętli

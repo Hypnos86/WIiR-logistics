@@ -77,12 +77,11 @@ body {
 }
 
 .dashboard-box:hover .hero-shadow {
- 
   background-color: rgb(11, 117, 112, 0.46);
 }
 
-.font-size{
-    font-size: large;
+.font-size {
+  font-size: large;
 }
 
 /* Kolory */
@@ -158,4 +157,10 @@ textarea::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: -1;
   border-radius: 10px;
+}
+
+.title-end {
+  text-align: end;
+  margin: 0;
+  padding: 0;
 }
