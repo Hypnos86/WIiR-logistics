@@ -12,6 +12,13 @@ class County(models.Model):
 
     name = models.CharField(max_length=15, null=False, verbose_name="Powiat", unique=True)
     id_order = models.IntegerField(verbose_name="Kolejność", unique=True, null=True)
+    slug = models.SlugField(max_length=50, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+        super().save(*args, **kwargs)
 
     @classmethod
     def create_county(cls):
@@ -49,9 +56,6 @@ class County(models.Model):
             {"name": "Wolsztyn", "id_order": 30},
             {"name": "Września", "id_order": 31},
             {"name": "Złotów", "id_order": 32},
-            {"name": "CBZC", "id_order": 33},
-            {"name": "CBŚP", "id_order": 34},
-            {"name": "BSWP", "id_order": 35},
         ]
 
         # Tworzenie i zapisywanie obiektów w pętli
@@ -68,7 +72,7 @@ class County(models.Model):
 class TypeUnit(models.Model):
     class Meta:
         verbose_name = "Rodzaj jednostki"
-        verbose_name_plural = "J.02 - Rodzaje jednostek"
+        verbose_name_plural = "Rodzaje jednostek"
         ordering = ["id"]
 
     type_short = models.CharField(max_length=10, null=False, verbose_name="Skrócona nazwa")
@@ -103,7 +107,7 @@ class TypeUnit(models.Model):
         return cls.objects.all()
 
     def __str__(self):
-        return f"{self.type_full}"
+        return f"{self.type_short}"
 
 
 class Unit(models.Model):
@@ -121,27 +125,27 @@ class Unit(models.Model):
     information = models.TextField(blank=True, verbose_name="Informacja")
     status = models.BooleanField(default=True, verbose_name="Aktualna")
     full_name = models.CharField(max_length=250, verbose_name="Pełna nazwa jednostki", null=True, blank=True)
-    slug = models.SlugField(max_length=80, default='', null=True)
+    slug = models.SlugField(max_length=80, unique=True, blank=True)
     create = models.DateTimeField(verbose_name="Utworzenie", auto_now_add=True)
     change = models.DateTimeField(verbose_name="Zmiany", auto_now=True)
     author = models.ForeignKey(to="auth.User", on_delete=models.CASCADE, related_name="unit", verbose_name="Autor")
 
-    def save(self, *args, **kwargs):
-        # Sprawdzenie, czy pole Slug jest puste
-        if not self.slug:
-            # Generowanie wartości Slug na podstawie miasta i adresu
-            slug = slugify(f"{self.type.type_short}-{self.city}-{self.address}-{self.id}")
-
-            # Sprawdzenie unikalności Slug w obecnej bazie danych
-            while Unit.objects.filter(slug=slug).exists():
-                # Jeśli istnieje już taki Slug, dodaj losowy ciąg znaków
-                random_string = get_random_string(length=4)
-                slug = f"{slug}-{random_string}"
-
-            # Przypisanie wygenerowanego Slug do pola Slug w modelu
-            self.slug = slug
-
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # Sprawdzenie, czy pole Slug jest puste
+    #     if not self.slug:
+    #         # Generowanie wartości Slug na podstawie miasta i adresu
+    #         slug = slugify(f"{self.type.type_short}-{self.city}-{self.address}-{self.id}")
+    #
+    #         # Sprawdzenie unikalności Slug w obecnej bazie danych
+    #         while Unit.objects.filter(slug=slug).exists():
+    #             # Jeśli istnieje już taki Slug, dodaj losowy ciąg znaków
+    #             random_string = get_random_string(length=4)
+    #             slug = f"{slug}-{random_string}"
+    #
+    #         # Przypisanie wygenerowanego Slug do pola Slug w modelu
+    #         self.slug = slug
+    #
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.type} {self.city}, {self.address}"

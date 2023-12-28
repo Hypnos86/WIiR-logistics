@@ -3,15 +3,46 @@
 {% load static %}
 {% block unitmenu %}
 <div class="container">
-    <div class="row">
-        {% for county in counties %}
-        <div class="col-sm-4 col-md-3 col-lg-2 my-3 text-center ">
-            <a href="#" class="btn btn-success d-block">{{ county }}</a>
+    <div class="">
+        {% for unit in units%}
+        <div class="list-group-item list-group-item-action d-flex justify-content-between">
+            <a class="text-secondary text-decoration-none list-group-item-action d-flex justify-content-between"
+               href="">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="w-25">{{unit.county.name}}</span>
+                    <span class="w-100">{{unit.type.type_full}}, {{unit.address}}, {{unit.zip_code}} {{unit.city}}</span>
+                </div>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+                {% if unit.manager == 'Policja' %}
+                <i class="bi bi-buildings-fill manager-police-color mx-2" data-toggle="info"
+                   title="{{unit.manager}}"></i>
+                {% else %}
+                <i class="bi bi-buildings-fill manager-other-color mx-2" data-toggle="info"
+                   title="{{unit.manager}}"></i>
+                {% endif %}
+                {% if unit.status%}
+                <i class="bi bi-check-circle-fill success mx-2" data-toggle="info" title="Aktualny"></i>
+                {%else%}
+                <i class="bi bi-dash-circle text-danger mx-2" data-toggle="info" title="Zdany"></i>
+                {%endif%}
+                {% if user.is_authenticated and user_belongs_to_group%}
+                <a class="color-sea" data-toggle="info" title="Edytuj" href="{% url 'units:editUnit' unit.slug %}">
+                    <i class="bi bi-pencil-square mx-2"></i>
+                </a>
+                {% endif %}
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
 <script>
     document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('unitCount').textContent = '{{unit_count}}';
+    document.getElementById('kmpUnits').textContent = '{{kmp_units}}';
+    document.getElementById('kppUnits').textContent = '{{kpp_units}}';
+    document.getElementById('kpUnits').textContent = '{{kp_units}}';
+    document.getElementById('ppUnits').textContent = '{{pp_units}}';
+    document.getElementById('rdUnits').textContent = '{{rd_units}}';
 </script>
 {% endblock %}

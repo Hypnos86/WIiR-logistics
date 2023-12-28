@@ -33,13 +33,13 @@ body {
 .main-settings {
   margin: 0;
   padding: 0;
-  min-height: 90vh;
+  min-height: 86vh;
 }
 
 .dashboard-layout {
   margin: 0;
   padding: 0;
-  min-height: 90vh;
+  min-height: 86vh;
   animation-name: enter;
   animation-duration: 3s;
   animation-fill-mode: both;
@@ -69,11 +69,31 @@ body {
   border-radius: 10px;
   font-size: 2rem;
 }
+/*
 .btn {
   transition: transform 0.4s;
 }
 .btn:hover {
   transform: scale(1.2);
+}
+*/
+.btn-main{
+    background-color: #0a4275 !important;
+    color: white;
+    border-color: #0a4275;
+    transition: transform .4s;
+}
+
+.btn-main:hover {
+    border-color: white;
+    color:white;
+    transform:scale(1.1);
+    background-color: #057570 !important;
+}
+
+.btn-main:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(5,117,112, 0.46) !important;
 }
 
 .dashboard-box:hover .hero-shadow {
@@ -159,8 +179,53 @@ textarea::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
-.title-end {
-  text-align: end;
+.title-center {
+  text-align: center;
   margin: 0;
   padding: 0;
+}
+
+.list-row-ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.list-row-li{
+    display: inline;
+    margin: 10px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.li-row-info{
+
+    padding: 0px 5px;
+    border: 1px solid #057570;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(15, 91, 163, 64);
+    margin: 0 3px;
+}
+.success{
+    color: #057570 !important;
+}
+
+.success-bg{
+    background-color: #057570 !important;
+}
+
+.manager-police-color{
+    color: #0B4275;
+}
+
+.manager-other-color{
+    color: #CA9E56;
 }

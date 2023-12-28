@@ -45,9 +45,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto d-flex align-items-center">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and unit_group %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'unit:unitList' %}">Jednostki</a>
+                    <a class="nav-link" href="{% url 'unit:countyList' %}">Jednostki</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated and contract_group %}
@@ -90,6 +90,34 @@
     {% block content%}
 
     {% endblock %}
+    <section class="fixed-bottom">
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+        <!-- Grid container -->
+        <div class="container py-1">
+            <!-- Section: CTA -->
+            <section class="">
+                <button class="btn btn-light btn-sm bi bi-info-square-fill" data-url="#"
+                        onclick="openInfoModal(this)"></button>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+            <span>© 2024 Wydział inwestycji i Remontów KWP w Poznaniu</span>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</section>
+<!--info Modal-->
+<div class="modal fade" id="infoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 </main>
 </body>
 </html>

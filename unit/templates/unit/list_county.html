@@ -1,0 +1,23 @@
+{% extends 'base_unit.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block unitmenu %}
+<div class="container">
+    <div class="row">
+        {% for county in counties %}
+        <div class="col-sm-4 col-md-3 col-lg-2 my-3 text-center ">
+            <a href="{% url 'unit:unitList' county.slug %}" class="btn btn-main d-block">{{ county }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('unitCount').textContent = '{{unit_count}}';
+    document.getElementById('kmpUnits').textContent = '{{kmp_units}}';
+    document.getElementById('kppUnits').textContent = '{{kpp_units}}';
+    document.getElementById('kpUnits').textContent = '{{kp_units}}';
+    document.getElementById('ppUnits').textContent = '{{pp_units}}';
+    document.getElementById('rdUnits').textContent = '{{rd_units}}';
+</script>
+{% endblock %}

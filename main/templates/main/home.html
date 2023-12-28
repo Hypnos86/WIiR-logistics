@@ -5,7 +5,7 @@
     <div class="row justify-content-around align-items-center dashboard-layout">
         {% if user.is_authenticated and unit_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box d-flex align-items-center justify-content-center m-3 box-unit">
-            <a href="{% url 'unit:unitList' %}" class="btn btn-outline-light">{{unit}}</a>
+            <a href="{% url 'unit:countyList' %}" class="btn btn-outline-light">{{unit}}</a>
             <div class="hero-shadow"></div>
         </div>
         {% endif %}

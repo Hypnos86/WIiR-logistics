@@ -7,6 +7,7 @@ from django.views import View
 
 logger = logging.getLogger(__name__)
 
+
 class MainModule(Enum):
     unit = 'Jednostki'
     contract = 'Umowy'
@@ -15,20 +16,20 @@ class MainModule(Enum):
     donation = 'Darowizny'
     gallery = 'Galeria'
 
+
 class GroupPermission(Enum):
     unit = 'Unit'
-    unit_edit = 'Unit Edit'
+    unit_edit = 'Unit_edit'
     contract = 'Contract'
-    contract_edit = 'Contract Edit'
+    contract_edit = 'Contract_edit'
     project = 'Project'
-    project_edit = 'Project Edit'
+    project_edit = 'Project_edit'
     plan = 'Plan'
-    plan_edit = 'Plan Edit'
+    plan_edit = 'Plan_edit'
     donation = 'Donation'
-    donation_edit = 'Donation Edit'
+    donation_edit = 'Donation_edit'
     gallery = 'Gallery'
-    gallery_edit = 'Gallery Edit'
-
+    gallery_edit = 'Gallery_edit'
 
 
 # Create your views here.
@@ -58,7 +59,11 @@ class HomeView(LoginRequiredMixin, View):
             donation_group = request.user.groups.filter(name=GroupPermission.donation.value).exists()
             gallery_group = request.user.groups.filter(name=GroupPermission.gallery.value).exists()
 
-            context = {'unit':MainModule.unit.value, 'contract':MainModule.contract.value, 'project':MainModule.contract.value, 'plan':MainModule.plan.value, 'donation':MainModule.donation.value, 'gallery':MainModule.gallery.value, 'unit_group':unit_group, 'contract_group':contract_group, 'project_group':project_group, 'plan_group':plan_group, 'donation_group':donation_group, 'gallery_group':gallery_group}
+            context = {'unit': MainModule.unit.value, 'contract': MainModule.contract.value,
+                       'project': MainModule.contract.value, 'plan': MainModule.plan.value,
+                       'donation': MainModule.donation.value, 'gallery': MainModule.gallery.value,
+                       'unit_group': unit_group, 'contract_group': contract_group, 'project_group': project_group,
+                       'plan_group': plan_group, 'donation_group': donation_group, 'gallery_group': gallery_group}
             return render(request, self.template, context)
         except Exception as e:
             logger.error("Error: %s", e)
