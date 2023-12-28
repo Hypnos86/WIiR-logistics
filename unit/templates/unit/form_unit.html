@@ -1,0 +1,77 @@
+{% extends 'base_unit.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block unitmenu %}
+<div class="container">
+    <div class="text-center">
+        <h5 class="h5 m-0 font-weight-bold text-uppercase">{%if new%} Nowy obiekt {%else%} Edycja obiektu {%endif%}</h5>
+    </div>
+    <div>
+        <form method="POST">
+            {%csrf_token%}
+            <div class="row mb-3 d-flex justify-content-center">
+                <div class="col-md-4 col-lg-3 mb-3">
+                    <span>{{form.county|bootstrap}}</span>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-3">
+                    <span>{{form.type|bootstrap}}</span>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-3">
+                    <span>{{form.address|bootstrap}}</span>
+                </div>
+            </div>
+            <div class="row mb-3 d-flex justify-content-center">
+                <div class="col-md-4 col-lg-3 mb-3">
+                    <span>{{form.zip_code|bootstrap}}</span>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-3">
+                    <span>{{form.city|bootstrap}}</span>
+                </div>
+                 <div class="col-md-4 col-lg-3 mb-3">
+                    <span>{{form.manager|bootstrap}}</span>
+                </div>
+            </div>
+            {%if not new%}
+            <div class="row mb-3 d-flex justify-content-center">
+                <div class="col-md-3 col-lg-2 mb-3">
+                    <label for="id_state">Status jednostki</label>
+                    <div class="form-control" id="id_state">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    {{form.status}}
+                                    <span>Aktualna</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row mb-3 d-flex justify-content-center">
+                <div class="col-md-12 col-lg-9">
+                    <span>{{form.information|bootstrap}}</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-main d-inline" onclick="snackbarFunction()">
+                    {%if new%}
+                    <span class="bi bi-save2"> Zapisz</span>
+                    {%else%}
+                    <span class="bi bi-save2"> Zapisz edycje</span>
+                    {%endif%}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('unitCount').textContent = '{{unit_count}}';
+    document.getElementById('kmpUnits').textContent = '{{kmp_units}}';
+    document.getElementById('kppUnits').textContent = '{{kpp_units}}';
+    document.getElementById('kpUnits').textContent = '{{kp_units}}';
+    document.getElementById('ppUnits').textContent = '{{pp_units}}';
+    document.getElementById('rdUnits').textContent = '{{rd_units}}';
+</script>
+{% endblock %}
