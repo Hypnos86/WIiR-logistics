@@ -2,14 +2,15 @@
 {% load bootstrap %}
 {% load static %}
 {% block unitmenu %}
+{%if unit_edit_group %}
 <div class="container">
     <div class="text-center">
-        <h5 class="h5 m-0 font-weight-bold text-uppercase">{%if new%} Nowy obiekt {%else%} Edycja obiektu {%endif%}</h5>
+        <h5 class="h5 font-weight-bold text-uppercase">{%if new%} Nowy obiekt {%else%} Edycja obiektu {%endif%}</h5>
     </div>
     <div>
         <form method="POST">
             {%csrf_token%}
-            <div class="row mb-3 d-flex justify-content-center">
+            <div class="row mb-1 d-flex justify-content-center">
                 <div class="col-md-4 col-lg-3 mb-3">
                     <span>{{form.county|bootstrap}}</span>
                 </div>
@@ -20,51 +21,52 @@
                     <span>{{form.address|bootstrap}}</span>
                 </div>
             </div>
-            <div class="row mb-3 d-flex justify-content-center">
+            <div class="row mb-1 d-flex justify-content-center">
                 <div class="col-md-4 col-lg-3 mb-3">
                     <span>{{form.zip_code|bootstrap}}</span>
                 </div>
                 <div class="col-md-4 col-lg-3 mb-3">
                     <span>{{form.city|bootstrap}}</span>
                 </div>
-                 <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-md-4 col-lg-3 mb-3">
                     <span>{{form.manager|bootstrap}}</span>
                 </div>
             </div>
-            {%if not new%}
-            <div class="row mb-3 d-flex justify-content-center">
-                <div class="col-md-3 col-lg-2 mb-3">
-                    <label for="id_state">Status jednostki</label>
-                    <div class="form-control" id="id_state">
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    {{form.status}}
-                                    <span>Aktualna</span>
-                                </label>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-9 col-lg-7">
+                    <span>{{form.information|bootstrap}}</span>
+                </div>
+                <div class="col-md-3 col-lg-2 align-content-between">
+                    {%if not new%}
+                    <div>
+                        <label for="id_state">Status jednostki</label>
+                        <div class="form-control" id="id_state">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        {{form.status}}
+                                        <span>Aktualna</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-main" onclick="snackbarFunction()">
+                        {%if new%}
+                        <span class="bi bi-save2"> Zapisz</span>
+                        {%else%}
+                        <span class="bi bi-save2"> Zapisz edycje</span>
+                        {%endif%}
+                    </button>
                 </div>
-            </div>
-            {% endif %}
-            <div class="row mb-3 d-flex justify-content-center">
-                <div class="col-md-12 col-lg-9">
-                    <span>{{form.information|bootstrap}}</span>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-main d-inline" onclick="snackbarFunction()">
-                    {%if new%}
-                    <span class="bi bi-save2"> Zapisz</span>
-                    {%else%}
-                    <span class="bi bi-save2"> Zapisz edycje</span>
-                    {%endif%}
-                </button>
             </div>
         </form>
     </div>
 </div>
+{% endif %}
 <script>
     document.getElementById('titleModule').textContent = '{{title}}';
     document.getElementById('unitCount').textContent = '{{unit_count}}';

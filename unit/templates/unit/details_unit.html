@@ -1,0 +1,17 @@
+{% extends 'base_unit.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block unitmenu %}
+{% if unit_group %}
+
+{% endif %}
+<script>
+    document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('unitCount').textContent = '{{unit_count}}';
+    document.getElementById('kmpUnits').textContent = '{{kmp_units}}';
+    document.getElementById('kppUnits').textContent = '{{kpp_units}}';
+    document.getElementById('kpUnits').textContent = '{{kp_units}}';
+    document.getElementById('ppUnits').textContent = '{{pp_units}}';
+    document.getElementById('rdUnits').textContent = '{{rd_units}}';
+</script>
+{% endblock %}

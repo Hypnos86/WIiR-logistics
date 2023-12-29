@@ -41,10 +41,11 @@ body {
 }
 
 .dashboard-layout {
-
   animation-name: enter;
   animation-duration: 3s;
   animation-fill-mode: both;
+  min-height:75vh
+  mac-height: 80vh;
 }
 
 @keyframes enter {
@@ -274,4 +275,10 @@ textarea::-webkit-scrollbar-thumb {
 
 .size-icon{
   font-size: 20px;
+}
+
+.align-content-between{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

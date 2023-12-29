@@ -105,7 +105,8 @@ class AddUnitView(LoginRequiredMixin, View):
         gallery_group = request.user.groups.filter(name=GroupPermission.gallery.value).exists()
         try:
             form = self.form_class()
-            context = {'form': form, 'unit_group': unit_group, 'contract_group': contract_group,
+            context = {'title': MainModule.unit.value, 'form': form, 'unit_group': unit_group,
+                       'contract_group': contract_group,
                        'project_group': project_group, 'plan_group': plan_group, 'donation_group': donation_group,
                        'gallery_group': gallery_group, 'unit_edit_group': unit_edit_group, 'new': True}
             return render(request, self.template_name, context)
@@ -142,7 +143,7 @@ class EditUnitView(LoginRequiredMixin, View):
     template_error = 'main/error_site.html'
     form_class = UnitForm
 
-    def get(self, request, slug):
+    def get(self, request, unit_slug):
         unit_group = request.user.groups.filter(name=GroupPermission.unit.value).exists()
         unit_edit_group = request.user.groups.filter(name=GroupPermission.unit_edit.value).exists()
         contract_group = request.user.groups.filter(name=GroupPermission.contract.value).exists()
@@ -151,9 +152,44 @@ class EditUnitView(LoginRequiredMixin, View):
         donation_group = request.user.groups.filter(name=GroupPermission.donation.value).exists()
         gallery_group = request.user.groups.filter(name=GroupPermission.gallery.value).exists()
         try:
-            unit = get_object_or_404(Unit, slug=slug)
-            slugCard = unit.county_unit.slug
+            unit = get_object_or_404(Unit, slug=unit_slug)
+            county = unit.county
+            units = Unit.objects.filter(status=True, county__slug=county.slug)
+            unit_count = units.count()
+
+            kmp_units = len(units.filter(type__type_short='KMP'))
+            kpp_units = len(units.filter(type__type_short='KPP'))
+            kp_units = len(units.filter(type__type_short='KP'))
+            pp_units = len(units.filter(type__type_short='PP'))
+            rd_units = len(units.filter(type__type_short='RD'))
             form = self.form_class(instance=unit)
+            context = {'title': county, 'form': form, 'unit_count': unit_count, 'kmp_units': kmp_units,
+                       'kpp_units': kpp_units, 'pp_units': pp_units, 'kp_units': kp_units, 'rd_units': rd_units,
+                       'unit_group': unit_group, 'contract_group': contract_group, 'project_group': project_group,
+                       'plan_group': plan_group, 'donation_group': donation_group, 'gallery_group': gallery_group,
+                       'unit_edit_group': unit_edit_group, 'new': False}
+            return render(request, self.template_name, context)
+        except Exception as e:
+            context = {'error_message': e, 'method': self.method}
+            return render(request, self.template_error, context)
+
+    def post(self, request, unit_slug):
+        unit_group = request.user.groups.filter(name=GroupPermission.unit.value).exists()
+        unit_edit_group = request.user.groups.filter(name=GroupPermission.unit_edit.value).exists()
+        contract_group = request.user.groups.filter(name=GroupPermission.contract.value).exists()
+        project_group = request.user.groups.filter(name=GroupPermission.project.value).exists()
+        plan_group = request.user.groups.filter(name=GroupPermission.plan.value).exists()
+        donation_group = request.user.groups.filter(name=GroupPermission.donation.value).exists()
+        gallery_group = request.user.groups.filter(name=GroupPermission.gallery.value).exists()
+        try:
+            unit = get_object_or_404(Unit, slug=unit_slug)
+            county_slug = unit.county.slug
+            form = self.form_class(request.POST or None, instance=unit)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.author = request.user
+                form.save()
+                return redirect(reverse(viewname='unit:unitList', kwargs={'county_slug': county_slug}))
             context = {'form': form, 'unit_group': unit_group, 'contract_group': contract_group,
                        'project_group': project_group, 'plan_group': plan_group, 'donation_group': donation_group,
                        'gallery_group': gallery_group, 'unit_edit_group': unit_edit_group, 'new': False}
@@ -162,7 +198,13 @@ class EditUnitView(LoginRequiredMixin, View):
             context = {'error_message': e, 'method': self.method}
             return render(request, self.template_error, context)
 
-    def post(self, request, slug):
+
+class DetailsUnitView(LoginRequiredMixin, View):
+    method = 'DetailsUnitView'
+    template_name = 'unit/details_unit.html'
+    template_error = 'main/error_site.html'
+
+    def get(self, request, unit_slug):
         unit_group = request.user.groups.filter(name=GroupPermission.unit.value).exists()
         unit_edit_group = request.user.groups.filter(name=GroupPermission.unit_edit.value).exists()
         contract_group = request.user.groups.filter(name=GroupPermission.contract.value).exists()
@@ -171,17 +213,21 @@ class EditUnitView(LoginRequiredMixin, View):
         donation_group = request.user.groups.filter(name=GroupPermission.donation.value).exists()
         gallery_group = request.user.groups.filter(name=GroupPermission.gallery.value).exists()
         try:
-            unit = get_object_or_404(Unit, slug=slug)
-            slugCard = unit.county_unit.slug
-            form = self.form_class(request.POST or None, instance=unit)
-            if form.is_valid():
-                instance = form.save(commit=False)
-                instance.author = request.user
-                form.save()
-                return redirect(reverse(viewname='main:unitCountyMain', kwargs={'countySlug': unit.county_unit.slug}))
-            context = {'form': form, 'unit_group': unit_group, 'contract_group': contract_group,
-                       'project_group': project_group, 'plan_group': plan_group, 'donation_group': donation_group,
-                       'gallery_group': gallery_group, 'unit_edit_group': unit_edit_group, 'new': False}
+            unit = get_object_or_404(Unit, slug=unit_slug)
+            county = unit.county
+            units = Unit.objects.filter(status=True, county__slug=county.slug)
+            unit_count = units.count()
+
+            kmp_units = len(units.filter(type__type_short='KMP'))
+            kpp_units = len(units.filter(type__type_short='KPP'))
+            kp_units = len(units.filter(type__type_short='KP'))
+            pp_units = len(units.filter(type__type_short='PP'))
+            rd_units = len(units.filter(type__type_short='RD'))
+            context = {'title': county, 'unit_count': unit_count, 'kmp_units': kmp_units, 'kpp_units': kpp_units,
+                       'pp_units': pp_units, 'kp_units': kp_units, 'rd_units': rd_units, 'unit_group': unit_group,
+                       'contract_group': contract_group, 'project_group': project_group, 'plan_group': plan_group,
+                       'donation_group': donation_group, 'gallery_group': gallery_group,
+                       'unit_edit_group': unit_edit_group}
             return render(request, self.template_name, context)
         except Exception as e:
             context = {'error_message': e, 'method': self.method}

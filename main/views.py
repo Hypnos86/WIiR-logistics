@@ -60,7 +60,7 @@ class HomeView(LoginRequiredMixin, View):
             gallery_group = request.user.groups.filter(name=GroupPermission.gallery.value).exists()
 
             context = {'unit': MainModule.unit.value, 'contract': MainModule.contract.value,
-                       'project': MainModule.contract.value, 'plan': MainModule.plan.value,
+                       'project': MainModule.project.value, 'plan': MainModule.plan.value,
                        'donation': MainModule.donation.value, 'gallery': MainModule.gallery.value,
                        'unit_group': unit_group, 'contract_group': contract_group, 'project_group': project_group,
                        'plan_group': plan_group, 'donation_group': donation_group, 'gallery_group': gallery_group}
