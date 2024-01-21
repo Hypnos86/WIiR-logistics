@@ -1,7 +1,7 @@
 {% extends 'base_unit.html' %}
 {% load bootstrap %}
 {% load static %}
-{% block unitmenu %}
+{% block unit_content %}
 {%if unit_edit_group %}
 <div class="container">
     <div class="text-center">
@@ -11,32 +11,30 @@
         <form method="POST">
             {%csrf_token%}
             <div class="row mb-1 d-flex justify-content-center">
-                <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-3">
                     <span>{{form.county|bootstrap}}</span>
                 </div>
-                <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-3">
                     <span>{{form.type|bootstrap}}</span>
                 </div>
-                <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-3">
                     <span>{{form.address|bootstrap}}</span>
                 </div>
-            </div>
-            <div class="row mb-1 d-flex justify-content-center">
-                <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-3">
                     <span>{{form.zip_code|bootstrap}}</span>
                 </div>
-                <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-3">
                     <span>{{form.city|bootstrap}}</span>
                 </div>
-                <div class="col-md-4 col-lg-3 mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-3">
                     <span>{{form.manager|bootstrap}}</span>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-md-9 col-lg-7">
+                <div class="col-sm-8 col-md-8 col-lg-9">
                     <span>{{form.information|bootstrap}}</span>
                 </div>
-                <div class="col-md-3 col-lg-2 align-content-between">
+                <div class="col-sm-4 col-md-4 col-lg-3 align-content-between">
                     {%if not new%}
                     <div>
                         <label for="id_state">Status jednostki</label>

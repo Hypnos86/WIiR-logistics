@@ -227,7 +227,7 @@ class DetailsUnitView(LoginRequiredMixin, View):
                        'pp_units': pp_units, 'kp_units': kp_units, 'rd_units': rd_units, 'unit_group': unit_group,
                        'contract_group': contract_group, 'project_group': project_group, 'plan_group': plan_group,
                        'donation_group': donation_group, 'gallery_group': gallery_group,
-                       'unit_edit_group': unit_edit_group}
+                       'unit_edit_group': unit_edit_group, 'unit':unit}
             return render(request, self.template_name, context)
         except Exception as e:
             context = {'error_message': e, 'method': self.method}

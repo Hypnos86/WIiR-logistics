@@ -52,22 +52,22 @@
                 {% endif %}
                 {% if user.is_authenticated and contract_group %}
                 <li class="nav-item">
-                    <a class="nav-link" href="">Umowy</a>
+                    <a class="nav-link" href="{% url 'contract:contractList' %}">Umowy</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated and project_group %}
                 <li class="nav-item">
-                    <a class="nav-link" href="">Inwestycje</a>
+                    <a class="nav-link" href="{% url 'project:projectList' %}">Inwestycje</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated and plan_group %}
                 <li class="nav-item">
-                    <a class="nav-link" href="">Plany</a>
+                    <a class="nav-link" href="{% url 'plan:planList' %}">Plany</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated and donation_group %}
                 <li class="nav-item">
-                    <a class="nav-link" href="">Darowizny</a>
+                    <a class="nav-link" href="{% url 'donation:donationList' %}">Darowizny</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated and gallery_group %}

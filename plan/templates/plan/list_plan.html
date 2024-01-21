@@ -1,0 +1,9 @@
+{% extends 'base_plan.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block plan_content %}
+
+<script>
+     document.getElementById('titleModule').textContent = '{{title}}';
+</script>
+{% endblock %}

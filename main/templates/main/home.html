@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container p-0">
+<div class="container py-3">
     <div class="row justify-content-around align-items-center dashboard-layout">
         {% if user.is_authenticated and unit_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box d-flex align-items-center justify-content-center m-3 box-unit">
@@ -11,25 +11,25 @@
         {% endif %}
         {% if user.is_authenticated and contract_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3 box-contract">
-            <a href="#" class="btn btn-outline-light font-size">{{contract}}</a>
+            <a href="{% url 'contract:contractList' %}" class="btn btn-outline-light font-size">{{contract}}</a>
             <div class="hero-shadow"></div>
         </div>
         {% endif %}
         {% if user.is_authenticated and project_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3 box-project">
-            <a href="#" class="btn btn-outline-light font-size">{{project}}</a>
+            <a href="{% url 'project:projectList' %}" class="btn btn-outline-light font-size">{{project}}</a>
             <div class="hero-shadow"></div>
         </div>
         {% endif %}
         {% if user.is_authenticated and plan_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3 box-plan">
-            <a href="#" class="btn btn-outline-light font-size">{{plan}}</a>
+            <a href="{% url 'plan:planList' %}" class="btn btn-outline-light font-size">{{plan}}</a>
             <div class="hero-shadow"></div>
         </div>
         {% endif %}
         {% if user.is_authenticated and donation_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3 box-donation">
-            <a href="#" class="btn btn-outline-light font-size">{{donation}}</a>
+            <a href="{% url 'donation:donationList' %}" class="btn btn-outline-light font-size">{{donation}}</a>
             <div class="hero-shadow"></div>
         </div>
         {% endif %}

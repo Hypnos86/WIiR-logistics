@@ -4,15 +4,15 @@
 {% block title %} WIiR - Jednostki {% endblock %}
 {% block content %}
 <section class="container">
-    <h4 id="titleModule" class="title-center"></h4>
+    <h4  class="title-center"><span id="titleModule"></span></h4>
     <div class="my-2 card py-2">
         <ul class="list-row-ul">
-            <li class="list-row-li">Jednostki&nbsp;<span id="unitCount" class="li-row-info"></span></li>
-            <li class="list-row-li">Komenda Miejska Policji&nbsp;<span id="kmpUnits" class="li-row-info"></span></li>
-            <li class="list-row-li">Komenda Powiatowa Policji&nbsp;<span id="kppUnits" class="li-row-info"></span></li>
-            <li class="list-row-li">Komisariat Policji&nbsp;<span id="kpUnits" class="li-row-info"></span></li>
-            <li class="list-row-li">Posterunek Policji&nbsp;<span id="ppUnits" class="li-row-info"></span></li>
-            <li class="list-row-li">Rewir Dzielnicowych&nbsp;<span id="rdUnits" class="li-row-info"></span></li>
+            <li class="list-row-li"><a href="">Jednostki</a><span id="unitCount" class="li-row-info"></span></li>
+            <li class="list-row-li"><a href="">Komenda Miejska Policji</a><span id="kmpUnits" class="li-row-info"></span></li>
+            <li class="list-row-li"><a href="">Komenda Powiatowa Policji</a>&nbsp;<span id="kppUnits" class="li-row-info"></span></li>
+            <li class="list-row-li"><a href="">Komisariat Policji</a><span id="kpUnits" class="li-row-info"></span></li>
+            <li class="list-row-li"><a href="">Posterunek Policji</a><span id="ppUnits" class="li-row-info"></span></li>
+            <li class="list-row-li"><a href="">Rewir Dzielnicowych</a><span id="rdUnits" class="li-row-info"></span></li>
         </ul>
         <ul class="list-row-ul">
             <li class="list-row-li">Powieżchnia użytkowa&nbsp;<span id="" class="li-row-info">0</span>m<sup>2</sup></li>
@@ -20,7 +20,7 @@
             <li class="list-row-li">Trwały zarząd&nbsp;<span id="" class="li-row-info">0</span>ha</li>
         </ul>
     </div>
-    <div class="d-flex justify-content-center py-2">
+    <div class="d-flex justify-content-evenly py-2">
         <a href="#" class="btn-icon mx-4" data-toggle="info" data-placement="bottom" title="Dodaj trwały zarząd"><i class="bi bi-plus-circle-fill size-icon"></i></a>
         <a href="{% url 'unit:addUnit'%}" class="btn-icon mx-4" data-toggle="info" data-placement="bottom" title="Dodaj jednostkę"><i class="bi bi bi-node-plus-fill size-icon"></i></a>
         <a href="#" class="btn-icon mx-4" data-toggle="info" data-placement="bottom" title="Dodaj budynek"><i class="bi bi-building-fill-add size-icon"></i></a>
@@ -28,7 +28,7 @@
     <hr>
 </section>
 
-{% block unitmenu %}
+{% block unit_content %}
 
 {% endblock %}
 

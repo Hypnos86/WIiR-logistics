@@ -184,8 +184,16 @@ textarea::-webkit-scrollbar-thumb {
 
 .title-center {
   text-align: center;
-  margin: 0;
-  padding: 0;
+  padding: 10px 0px;
+  margin: 0px;
+  line-height: 2;
+}
+.title-center span {
+  background-color: #395975;
+  color:white;
+  padding: 3px 10px;
+  border: 1px solid #395975;
+  border-radius: 15px;
 }
 
 .list-row-ul{
@@ -206,6 +214,10 @@ textarea::-webkit-scrollbar-thumb {
     align-items: center;
     font-weight: 500;
 
+    >a {
+    text-decoration: none;
+    color: #132C42;
+    }
 }
 
 .li-row-info{
@@ -235,8 +247,9 @@ textarea::-webkit-scrollbar-thumb {
 
 .color-sea{
   color: #0B4275;
-  background-color: white;
-  border-radius: 25px;
+  background-color: whitesmoke;
+  padding: 2px 5px;
+  border-radius: 10rem;
 }
 
 .color-sea:hover{
@@ -281,4 +294,15 @@ textarea::-webkit-scrollbar-thumb {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.list-ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.list-li{
+    margin: 10px 0px;
+    font-weight: 500;
 }

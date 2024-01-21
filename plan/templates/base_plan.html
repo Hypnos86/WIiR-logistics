@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block title %} WIiR - Plany {% endblock %}
+{% block content %}
+<section class="container">
+    <h4  class="title-center"><span id="titleModule"></span></h4>
+    <div class="my-2 card py-2">
+        <ul class="list-row-ul">
+            <li class="list-row-li">Inwestycji&nbsp;<span id="" class="li-row-info"></span></li>
+            <li class="list-row-li">Inwestycji zrealizowanych<span id="" class="li-row-info"></span></li>
+            <li class="list-row-li">Inwestycji w trakcie realizacji<span id="" class="li-row-info"></span></li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-evenly py-2">
+        <a href="#" class="btn-icon mx-4" data-toggle="info" data-placement="bottom" title="Dodaj plan">
+            <i class="bi bi-plus-circle-fill size-icon"></i>
+        </a>
+    </div>
+    <hr>
+</section>
+
+{% block plan_content %}
+
+{% endblock %}
+
+{% endblock %}
