@@ -57,17 +57,16 @@ class Paragraph(models.Model):
         verbose_name_plural = "K.03 - Paragrafy i pozycje"
 
     paragraph = models.CharField("Paragraf", max_length=7, unique=True)
-    name = models.CharField("Nazwa", max_length=50)
+    name = models.CharField("Nazwa", max_length=150)
 
     @classmethod
     def create_paragraphs(cls):
         data = [
-            {'paragraph': '4270-01', 'name': ''},
-            {'paragraph': '4270-02', 'name': ''},
-            {'paragraph': '6050-03', 'name': ''},
-            {'paragraph': '6060-10', 'name': ''},
+            {'paragraph': '4270-01', 'name': 'Remonty z Planu remontów'},
+            {'paragraph': '4270-02', 'name': 'Konserwacja pomieszczeń, buydnków i budowli'},
+            {'paragraph': '6050-03', 'name': 'Wydatki inwestycyjne'},
+            {'paragraph': '6060-10', 'name': 'Wydatki na zakupy inwestycyjne'},
         ]
-        # TODO Dokonczyc nazwy obiektów
 
         for item in data:
             paragraphs = cls(paragraph=item['paragraph'], name=item['name'])
