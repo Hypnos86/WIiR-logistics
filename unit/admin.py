@@ -22,3 +22,4 @@ class UnitAdmin(admin.ModelAdmin):
     list_display_links = ('county', 'type', 'address', 'city')
     search_fields = ['type', 'address', 'city']
     list_filter = ['county']
+

@@ -2,8 +2,9 @@ import logging
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
+
 from main.views import MainModule, GroupPermission
-from plan.models import Section, Group, Paragraph, Source, FinanceSource
+from plan.models import Section, Group, Paragraph, Source, FinanceSource,PriorityModel
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class PlanListView(LoginRequiredMixin, View):
             # Tworzenie obiektów do modułu
             section = Section.objects.all()
             if not section.exists():
-                Section.create_section()
+                Section.create_sections()
 
             group = Group.objects.all()
             if not group.exists():
@@ -37,6 +38,11 @@ class PlanListView(LoginRequiredMixin, View):
             source = Source.objects.all()
             if not source.exists():
                 Source.create_sources()
+
+            priority = PriorityModel.objects.all()
+            if not priority.exists():
+                PriorityModel.create_priority()
+
             # ----------KONIEC------------
 
             context = {'title': MainModule.plan.value, 'unit_group': unit_group, 'contract_group': contract_group,

@@ -1,14 +1,15 @@
 from django.db import models
+from unit.models import Unit
 
 
 class Section(models.Model):
     class Meta:
         verbose_name = "Rozdział"
-        verbose_name_plural = "Rozdziały"
+        verbose_name_plural = "M.03 - Rozdziały"
         ordering = ["section"]
 
-    section = models.CharField("Rozdział", max_length=5, unique=True)
-    name = models.CharField("Nazwa", max_length=20)
+    section = models.CharField(verbose_name="Rozdział", max_length=5, unique=True)
+    name = models.CharField(verbose_name="Nazwa", max_length=20)
 
     @classmethod
     def create_sections(cls):
@@ -32,9 +33,9 @@ class Section(models.Model):
 class Group(models.Model):
     class Meta:
         verbose_name = "Grupa"
-        verbose_name_plural = "K.01 - Grupy"
+        verbose_name_plural = "M.04 - Grupy"
 
-    group = models.IntegerField("Grupa", max_length=2, unique=True)
+    group = models.IntegerField(verbose_name="Grupa", unique=True)
     name = models.CharField("Nazwa", max_length=50)
 
     @classmethod
@@ -54,7 +55,7 @@ class Group(models.Model):
 class Paragraph(models.Model):
     class Meta:
         verbose_name = "Paragraf i pozycja"
-        verbose_name_plural = "K.03 - Paragrafy i pozycje"
+        verbose_name_plural = "M.05 - Paragrafy i pozycje"
 
     paragraph = models.CharField("Paragraf", max_length=7, unique=True)
     name = models.CharField("Nazwa", max_length=150)
@@ -62,10 +63,10 @@ class Paragraph(models.Model):
     @classmethod
     def create_paragraphs(cls):
         data = [
-            {'paragraph': '4270-01', 'name': 'Remonty z Planu remontów'},
-            {'paragraph': '4270-02', 'name': 'Konserwacja pomieszczeń, buydnków i budowli'},
-            {'paragraph': '6050-03', 'name': 'Wydatki inwestycyjne'},
-            {'paragraph': '6060-10', 'name': 'Wydatki na zakupy inwestycyjne'},
+            {'paragraph': '4270-01', 'name': 'Remonty'},
+            {'paragraph': '4270-02', 'name': 'Konserwacje, awarie'},
+            {'paragraph': '6050-03', 'name': 'Inwestycje'},
+            {'paragraph': '6060-10', 'name': 'Zakupy inwestycyjne'},
         ]
 
         for item in data:
@@ -80,7 +81,7 @@ class Paragraph(models.Model):
 class Source(models.Model):
     class Meta:
         verbose_name = "Źródło finansowania"
-        verbose_name_plural = "K.04 - Źródła finansowania"
+        verbose_name_plural = "M.06 - Źródła finansowania"
 
     source = models.CharField("Źródło", max_length=8, null=True)
     name = models.CharField("Źródło", max_length=100, null=True)
@@ -105,7 +106,7 @@ class Source(models.Model):
 class FinanceSource(models.Model):
     class Meta:
         verbose_name = "Konto"
-        verbose_name_plural = "K.05 - Konta"
+        verbose_name_plural = "M.07 - Konta"
 
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name="Rozdział")
     group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name="Grupa")
@@ -114,3 +115,72 @@ class FinanceSource(models.Model):
 
     def __str__(self):
         return f"{self.section.section}-{self.group.group}-{self.paragraph}-{self.source}"
+
+
+class PriorityModel(models.Model):
+    class Meta:
+        verbose_name = 'Priorytet'
+        verbose_name_plural = 'M.08 - Priorytety'
+
+    name = models.CharField(verbose_name='Priorytet', max_length=3)
+
+    @classmethod
+    def create_priority(cls):
+        data = [
+            {'name': 'I'},
+            {'name': 'II'},
+            {'name': 'III'},
+        ]
+
+        for item in data:
+            priority = cls(name=item['name'])
+            priority.save()
+
+        return cls.objects.all()
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class PlanModel(models.Model):
+    class Meta:
+        verbose_name = 'Plan'
+        verbose_name_plural = 'M.01 - Plany'
+        ordering = ['date']
+
+    related_name = 'plan'
+
+    title = models.CharField(verbose_name='Tytuł', max_length=200, null=False)
+    subtitle = models.CharField(verbose_name='Podtytuł', max_length=200, null=False)
+    date = models.DateField(verbose_name='Data')
+    tasks_cost = models.DecimalField(verbose_name='Suma', max_digits=10, decimal_places=2)
+    create = models.DateTimeField(verbose_name="Utworzenie", auto_now_add=True)
+    change = models.DateTimeField(verbose_name="Zmiany", auto_now=True)
+    author = models.ForeignKey(to="auth.User", on_delete=models.CASCADE, verbose_name="Autor")
+
+    def __str__(self):
+        return f"{self.title} z dnia {self.date.strftime('%d.%m.%Y')}r."
+
+
+class ItemPlanModel(models.Model):
+    class Meta:
+        verbose_name = 'Zadanie w planie'
+        verbose_name_plural = 'M.02 - Zadania w planie'
+        ordering = ['create']
+
+    related_name = 'itemPlan'
+
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, verbose_name="Jednostka")
+    task = models.CharField(verbose_name='Nazwa zadania', max_length=200, null=False)
+    source = models.ForeignKey(FinanceSource, verbose_name='Źródło finansowania', on_delete=models.CASCADE,
+                               related_name=related_name)
+    cost = models.DecimalField(verbose_name='Szacowany koszt', max_digits=10, decimal_places=2, null=False)
+    priority = models.ForeignKey(PriorityModel, verbose_name='Priorytet', on_delete=models.CASCADE,
+                                 related_name=related_name)
+    plan = models.ForeignKey(PlanModel, verbose_name='Plan', on_delete=models.CASCADE, related_name=related_name)
+    create = models.DateTimeField(verbose_name="Utworzenie", auto_now_add=True)
+    change = models.DateTimeField(verbose_name="Zmiany", auto_now=True)
+    author = models.ForeignKey(to="auth.User", on_delete=models.CASCADE, verbose_name="Autor")
+
+    def __str__(self):
+        return f"{self.unit.type.type_short} {self.unit.city} - {self.task}"
