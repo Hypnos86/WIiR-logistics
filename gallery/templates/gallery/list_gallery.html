@@ -1,0 +1,9 @@
+{% extends 'base_gallery.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block gallery_content %}
+
+<script>
+     document.getElementById('titleModule').textContent = '{{title}}';
+</script>
+{% endblock %}

@@ -35,7 +35,7 @@
         {% endif %}
         {% if user.is_authenticated and gallery_group %}
         <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 dashboard-box p-0 m-3 box-gallery">
-            <a href="#" class="btn btn-outline-light font-size">{{gallery}}</a>
+            <a href="{% url 'gallery:galleryList' %}" class="btn btn-outline-light font-size">{{gallery}}</a>
             <div class="hero-shadow"></div>
         </div>
         {% endif %}
