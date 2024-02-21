@@ -151,15 +151,15 @@ class PlanModel(models.Model):
     related_name = 'plan'
 
     title = models.CharField(verbose_name='Tytuł', max_length=200, null=False)
-    subtitle = models.CharField(verbose_name='Podtytuł', max_length=200, null=False)
+    subtitle = models.CharField(verbose_name='Podtytuł', max_length=200, null=True, blank=True)
     date = models.DateField(verbose_name='Data')
-    tasks_cost = models.DecimalField(verbose_name='Suma', max_digits=10, decimal_places=2)
+    tasks_cost = models.DecimalField(verbose_name='Suma', max_digits=10, decimal_places=2, null=True, blank=True)
     create = models.DateTimeField(verbose_name="Utworzenie", auto_now_add=True)
     change = models.DateTimeField(verbose_name="Zmiany", auto_now=True)
     author = models.ForeignKey(to="auth.User", on_delete=models.CASCADE, verbose_name="Autor")
 
     def __str__(self):
-        return f"{self.title} z dnia {self.date.strftime('%d.%m.%Y')}r."
+        return f"{self.title} z dnia {self.date.strftime('%d.%m.%Y')} r."
 
 
 class ItemPlanModel(models.Model):

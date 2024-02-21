@@ -1,0 +1,41 @@
+{% extends 'base_plan.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block plan_content %}
+<div class="container">
+    <h3 class="text-center">{{plan.title}} z dnia {{plan.date|date:'d.m.Y'}} r.</h3>
+    <h5>Ostatnia zmiana: {{plan.change|date:'d.m.Y'}} r.</h5>
+<table class="table table-hover">
+  <thead>
+    <tr class="increment-number">
+      <th scope="col">L.p</th>
+      <th scope="col">Jednostka</th>
+      <th scope="col">Zadanie</th>
+      <th scope="col">Źródło finansowania</th>
+      <th scope="col">Priorytet</th>
+      <th scope="col">Szacowany koszt</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in plan.itemPlan.all %}
+    <tr class="increment-number">
+      <td class="text-center" valign="middle" scope="row"></td>
+      <td>{{item.unit}}</td>
+      <td>{{item.task}}</td>
+      <td>{{item.source}}</td>
+      <td>{{item.priority}}</td>
+      <td>{{item.cost}}</td>
+      <td></td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<script>
+    document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('planQuantity').textContent = '{{planQuantity}}';
+</script>
+{% endblock %}

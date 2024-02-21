@@ -2,8 +2,16 @@
 {% load bootstrap %}
 {% load static %}
 {% block plan_content %}
+<div class="container">
+    <div class="list-group">
+        {% for plan in plans %}
+        <a href="{% url 'plan:detailsPlan' plan.id %}" class="list-group-item list-group-item-action d-flex justify-content-between"><span>{{plan}} {% if plan.subtitle %} ({{plan.subtitle}}) {% endif %}</span><span>Ostatania zmiana: {{plan.change|date:'d.m.Y'}}</span></a>
+        {% endfor %}
+    </div>
+</div>
 
 <script>
-     document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('titleModule').textContent = '{{title}}';
+    document.getElementById('planQuantity').textContent = '{{planQuantity}}';
 </script>
 {% endblock %}

@@ -306,3 +306,17 @@ textarea::-webkit-scrollbar-thumb {
     margin: 10px 0px;
     font-weight: 500;
 }
+.table {
+  counter-reset: rowNumber -1;
+}
+
+.increment-number{
+    counter-increment: rowNumber
+}
+
+.increment-number td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.2em;
+}
+
