@@ -25,7 +25,11 @@
       <td>{{item.task}}</td>
       <td>{{item.source}}</td>
       <td>{{item.priority}}</td>
-      <td>{{item.cost}}</td>
+      {% if item.cost %}
+      <td>{{item.cost}} zł</td>
+      {% else %}
+      <td>0 zł</td>
+      {% endif %}
       <td></td>
 
     </tr>

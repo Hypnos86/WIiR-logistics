@@ -12,13 +12,30 @@
         </ul>
     </div>
     <div class="d-flex justify-content-evenly py-2">
-        <a href="#" class="btn-icon mx-4" data-toggle="info" data-placement="bottom" title="Dodaj plan">
+        <button type="button" data-url="{% url 'plan:modalPlan' %}" class="btn-icon mx-4" data-toggle="info" data-placement="bottom" title="Dodaj plan" onclick="openModal(this)">
             <i class="bi bi-plus-circle-fill size-icon"></i>
-        </a>
+        </button>
     </div>
     <hr>
 </section>
+<div class="modal fade" id="newPlanModal" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 
+<script>
+    function openModal(button){
+        var url = $(button).data("url");
+        $("#newPlanModal .modal-content").load(url);
+        $("#newPlanModal").modal("show");
+    }
+
+    function submitForm(){
+    $("#submitButton").closest("form").submit();
+    }
+</script>
 {% block plan_content %}
 
 {% endblock %}

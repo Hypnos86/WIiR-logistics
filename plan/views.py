@@ -81,3 +81,19 @@ class DetailsPlanView(LoginRequiredMixin, View):
         except Exception as e:
             context = {'error_message': e, 'method': self.method}
             return render(request, self.template_error, context)
+
+
+class ModalPlanView(LoginRequiredMixin, View):
+    method = 'ModalPlanView'
+    template_name = 'plan/modal_add_plan.html'
+    template_error = 'main/error_site.html'
+
+    def get(self, request):
+        try:
+
+            context = {}
+            return render(request, self.template_name, context)
+        except Exception as e:
+            logger.error("Wystąpił błąd: %s", e)
+            context = {'error_message': e, 'method': self.method}
+            return render(request, self.template_error, context)
