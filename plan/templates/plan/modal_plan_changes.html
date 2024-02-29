@@ -1,0 +1,12 @@
+{% load static %}
+{% load bootstrap %}
+{% block content %}
+<h6>Zmiany</h6>
+<ul>
+    {% for change in changes %}
+    <li>{{change}} | {{change.title}} | {{change.subtitle}} | {{change.date}} | {{change.task_cost}} | {{change.change}} | {{change.history_date}} | {{change.create}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+

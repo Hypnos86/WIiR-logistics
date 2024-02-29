@@ -5,22 +5,34 @@
 <div class="container">
     <div class="list-group">
         {% for plan in plans %}
-        <a href="{% url 'plan:detailsPlan' plan.id %}" class="list-group-item list-group-item-action d-flex justify-content-between">
-            <span>{{plan}} {% if plan.subtitle %} ({{plan.subtitle}}) {% endif %}</span><span>Ostatania zmiana: {{plan.change|date:'d.m.Y'}}</span>
-        </a>
+        <li class="list-group-item list-group-item-action list-group-item d-flex justify-content-between">
+            <a href="{% url 'plan:detailsPlan' plan.id %}" class="w-75">
+                {{plan}} {% if plan.subtitle %} ({{plan.subtitle}}) {% endif %}
+            </a>
+            <div class="d-flex justify-content-between w-25">
+                <button data-url="{% url 'plan:changesPlan' plan.id%}" onclick="openHistoryModal(this)">Ostatania zmiana: {{plan.change|date:'d.m.Y'}} r.</button>
+                <button class="btn my-0 py-0 bi bi-pencil-square"></button>
+            </div>
+        </li>
         {% endfor %}
     </div>
 </div>
 
 <!--MODAL-->
-<!--<div class="modal fade" id="informationModal">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--        <div class="modal-content">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="modal fade" id="historyModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
 <script>
     document.getElementById('titleModule').textContent = '{{title}}';
     document.getElementById('planQuantity').textContent = '{{planQuantity}}';
+
+    function openHistoryModal(button){
+        var url = $(button).data("url");
+        $("#historyModal .modal-content").load(url);
+        $("#historyModal").modal("show");
+    }
 </script>
 {% endblock %}

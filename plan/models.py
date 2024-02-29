@@ -1,5 +1,6 @@
 from django.db import models
 from unit.models import Unit
+from simple_history.models import HistoricalRecords
 
 
 class Section(models.Model):
@@ -157,6 +158,8 @@ class PlanModel(models.Model):
     create = models.DateTimeField(verbose_name="Utworzenie", auto_now_add=True)
     change = models.DateTimeField(verbose_name="Zmiany", auto_now=True)
     author = models.ForeignKey(to="auth.User", on_delete=models.CASCADE, verbose_name="Autor")
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.title} z dnia {self.date.strftime('%d.%m.%Y')} r."

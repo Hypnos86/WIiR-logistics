@@ -1,0 +1,17 @@
+{% load static %}
+{% load bootstrap %}
+{% block content %}
+<div class="container ">
+    <form class="m-2 p-4" method="POST" action="{% url 'plan:modalAddPlan' %}">
+        {%csrf_token%}
+        <h4 class="text-center">Dodawanie nowego planu</h4>
+        <ul class="no-decoration-list">
+            <li class="my-2">{{form.title|bootstrap}}</li>
+            <li class="my-2">{{form.subtitle|bootstrap}}</li>
+            <li class="my-2">{{form.date|bootstrap}}</li>
+        </ul>
+        <button class="btn btn-dark w-100" type="submit">Dodaj</button>
+    </form>
+</div>
+{% endblock %}
+

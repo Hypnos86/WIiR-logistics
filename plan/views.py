@@ -1,8 +1,8 @@
 import logging
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-
+from plan.forms import PlanModelForm
 from main.views import MainModule, GroupPermission
 from plan.models import Section, Group, Paragraph, Source, PlanModel, FinanceSource, PriorityModel
 
@@ -83,16 +83,56 @@ class DetailsPlanView(LoginRequiredMixin, View):
             return render(request, self.template_error, context)
 
 
-class ModalPlanView(LoginRequiredMixin, View):
+class ModalAddPlanView(LoginRequiredMixin, View):
     method = 'ModalPlanView'
-    template_name = 'plan/modal_add_plan.html'
+    template_name = 'plan/modal_form_plan.html'
     template_error = 'main/error_site.html'
+    from_class = PlanModelForm
 
     def get(self, request):
         try:
-
-            context = {}
+            form = self.from_class()
+            context = {'form': form, 'new': True}
             return render(request, self.template_name, context)
+        except Exception as e:
+            logger.error("Wystąpił błąd: %s", e)
+            context = {'error_message': e, 'method': self.method}
+            return render(request, self.template_error, context)
+
+    def post(self, request):
+        try:
+            form = self.from_class(request.POST or None)
+            if request.method == 'POST':
+                if form.is_valid():
+                    instance = form.save(commit=False)
+                    instance.author = request.user
+                    instance.save()
+                    return redirect('plan:planList')
+
+            context = {'form': form, 'new': True}
+            return render(request, self.template_name, context)
+        except Exception as e:
+            logger.error("Wystąpił błąd: %s", e)
+            context = {'error_message': e, 'method': self.method}
+            return render(request, self.template_error, context)
+
+
+class ChangesPlanView(LoginRequiredMixin, View):
+    method = 'ChangesPlanView'
+    template_name = 'plan/modal_plan_changes.html'
+    template_error = 'main/error_site.html'
+
+    def get(self, request, plan_id):
+        try:
+            plan = PlanModel.objects.get(pk=plan_id)
+            changes = plan.history.all()  # Pobierz historię zmian
+
+            for x in changes:
+                print(vars(x))
+
+            context = {'plan': plan, 'changes': changes}
+            return render(request, self.template_name, context)
+
         except Exception as e:
             logger.error("Wystąpił błąd: %s", e)
             context = {'error_message': e, 'method': self.method}

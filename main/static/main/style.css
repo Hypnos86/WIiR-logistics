@@ -3,7 +3,9 @@
   margin: 0;
   padding: 0;
 }
-
+:root{
+    --main-color:#132C42; /* granatowy */
+}
 html {
   /*font-family: Arial, Helvetica, sans-serif;*/
 }
@@ -14,6 +16,15 @@ body {
   background-color: #f7f7f7;
   /*#F7F7F7*/
   /*#E8E8E8*/
+}
+
+a {
+  text-decoration: none;
+  color: black;
+
+  :hover{
+  color: var(--main-color);
+  }
 }
 .navbar {
   position: sticky;
@@ -318,5 +329,10 @@ textarea::-webkit-scrollbar-thumb {
     content: counter(rowNumber);
     min-width: 1em;
     margin-right: 0.2em;
+}
+
+.no-decoration-list {
+  list-style-type: none;
+  padding: 0;
 }
 
