@@ -11,7 +11,8 @@
 - Postgresql
 - Bootstrap 5.0.2
 
-1. Instalacja bibliotek: 
+1. Aktualizacja PIP: `pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pythonhosted.org`
+2. Instalacja bibliotek: 
 `python -m pip install -r requirements.txt`
-1. Odpalenie aplikacji: 
+3. Odpalenie aplikacji: 
 `python manage.py runserver`
