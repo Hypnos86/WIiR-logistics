@@ -4,11 +4,10 @@
 {% block title %} WIiR - Plany {% endblock %}
 {% block content %}
 <section class="container">
-    <h4  class="title-center"><span id="titleModule"></span></h4>
+    <h4  class="title-center"><span id="titleModule">{{title}}</span></h4>
     <div class="my-2 card py-2">
         <ul class="list-row-ul">
-            <li class="list-row-li">Plany&nbsp;<span id="planQuantity" class="li-row-info"></span></li>
-
+            <li class="list-row-li">Plany&nbsp;<span id="planQuantity" class="li-row-info">{{planQuantity}}</span></li>
         </ul>
     </div>
     <div class="d-flex justify-content-evenly py-2">
